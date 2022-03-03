@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import se.olaamberntsson.thymeleafwebapp.model.Employee;
 import se.olaamberntsson.thymeleafwebapp.service.EmployeeService;
 
@@ -33,6 +35,12 @@ public class EmployeeController {
 
         //thymeleaf template
         return "new_employee";
+    }
+
+    @PostMapping("/saveEmployee")
+    public String saveEmployee(@ModelAttribute("employee") Employee employee){
+        employeeService.saveEmployee(employee);
+        return "redirect:/";
 
     }
 
