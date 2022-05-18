@@ -5,14 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import se.olaamberntsson.thymeleafwebapp.model.Employee;
 import se.olaamberntsson.thymeleafwebapp.service.EmployeeService;
-
 import javax.validation.Valid;
-
 
 @Controller
 public class EmployeeController {
@@ -20,7 +17,6 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    //display list of employees
 
     @GetMapping("/")
     public String viewHomePage(Model model){
@@ -64,5 +60,4 @@ public class EmployeeController {
         return "redirect:/";
 
     }
-
 }
