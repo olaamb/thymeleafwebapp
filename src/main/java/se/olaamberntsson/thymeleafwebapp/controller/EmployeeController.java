@@ -3,12 +3,15 @@ package se.olaamberntsson.thymeleafwebapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import se.olaamberntsson.thymeleafwebapp.model.Employee;
 import se.olaamberntsson.thymeleafwebapp.service.EmployeeService;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -39,7 +42,10 @@ public class EmployeeController {
     }
 
     @PostMapping("/saveEmployee")
-    public String saveEmployee(@ModelAttribute("employee") Employee employee){
+    public String saveEmployee(@Valid Employee employee, BindingResult result, Model model){
+        if(result.hasErrors()){
+            return "new_employee";
+        }
         employeeService.saveEmployee(employee);
         return "redirect:/";
     }

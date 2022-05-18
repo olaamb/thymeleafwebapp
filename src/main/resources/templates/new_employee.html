@@ -18,12 +18,20 @@
     <h2> Save Employee</h2>
 
     <form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="POST">
-        <input type="text" th:field="*{firstName}" placeholder="Employee First Name" class="form-control-md4 col-4">
-        <input type="text" th:field="*{lastName}" placeholder="Employee Last Name" class="form-control-md4 col-4">
-        <input type="text" th:field="*{email}" placeholder="Employee Email" class="form-control-md4 col-4">
-        <button type="submit" class="btn btn-info col-2">Save Employee</button>
+        <div class="form-group">
+        <input type="text" name="firstname" th:field="*{firstName}" placeholder="Employee First Name" class="form-control-md4 col-4">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+        </div>
+        <div class="form-group">
+        <input type="text" name="lastname" th:field="*{lastName}" placeholder="Employee Last Name" class="form-control-md4 col-4">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+        </div>
+        <div class="form-group">
+        <input type="text" name="email" th:field="*{email}" placeholder="Employee Email" class="form-control-md4 col-4">
+        <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+        <input type="submit"  class="btn btn-success" value="Add Employee">
     </form>
-
     <hr>
     <a th:href="@{/}">Back to Employee List</a>
 </div>

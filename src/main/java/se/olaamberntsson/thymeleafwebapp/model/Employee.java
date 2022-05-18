@@ -1,6 +1,9 @@
 package se.olaamberntsson.thymeleafwebapp.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "employees")
@@ -11,11 +14,16 @@ public class Employee {
     private long id;
 
     @Column(name = "first_name")
+    @NotEmpty(message = "Name must be at least 2 letters")
+    @Size(min=2, max = 20)
     private String firstName;
 
     @Column(name = "last_name")
+    @NotEmpty(message = "Last name must not be empty")
+    @Size(min = 2, max = 20)
     private String lastName;
 
+    @Email(message = "Must be valid email address")
     @Column(name = "email")
     private String email;
 
