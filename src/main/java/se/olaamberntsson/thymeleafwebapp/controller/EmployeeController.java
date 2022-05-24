@@ -14,8 +14,11 @@ import javax.validation.Valid;
 @Controller
 public class EmployeeController {
 
-    @Autowired
     private EmployeeService employeeService;
+
+    public EmployeeController(EmployeeService employeeService){
+        this.employeeService = employeeService;
+    }
 
 
     @GetMapping("/")
